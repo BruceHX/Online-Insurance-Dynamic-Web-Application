@@ -1,0 +1,16 @@
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="pack.DbConnector"%>
+<%
+String d = request.getQueryString();
+Connection connn = DbConnector.getConnection();
+Statement st = connn.createStatement();
+int i = st.executeUpdate("delete from policyregispage where key_='"+d+"'");
+if(i!=0){
+response.sendRedirect("adminpage.jsp?que=query executed..!");
+}else{
+    response.sendRedirect("adminpolicydetail.jsp?que=query not executed..!");
+}
+
+
+%>
